@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="aigo_serial_py" type="aigo_serial_pub.py" name="aigo_serial_pub"/>
+    <node pkg="aigo_serial_py" type="aigo_serial_sub.py" name="aigo_serial_sub" output="screen"/>
+</launch> 
