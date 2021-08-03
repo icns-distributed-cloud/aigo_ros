@@ -1,0 +1,10 @@
+<launch>
+	<param name="robot_description" textfile="$(find aigo_urdf)/urdf/aigo.urdf" />
+ 
+	<!-- Run the joint_state_publisher_gui node to publish the joint state of the robot -->
+	<node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+	
+	 <!-- Run the robot_state_publisher node, publish tf, and organize the relationship between the robot's link joints into a three-dimensional posture and publish it in the form of TF -->
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+	
+</launch>

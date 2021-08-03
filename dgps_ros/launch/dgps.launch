@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <node pkg="dgps_ros" type="dgps_ros_node" name="dgps" output="screen">
+        <param name="server"  value="www.gnssdata.or.kr"/>
+        <param name="port"  value="2101"/>
+        <param name="username"  value="clapd10@khu.ac.kr"/>
+        <param name="password"  value="gnss"/>
+        <param name="serialPort" value="/dev/ttyAMA1"/>
+    </node>
+</launch>
