@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
     <!-- load robot description -->
-    <include file="$(find aigo_urdf)/launch/aigo_urdf.launch"/>
+    <!--include file="$(find aigo_urdf)/launch/aigo_urdf.launch"/-->
     <!-- launch aigo_serial to communicate with STM32 board -->
     <include file="$(find aigo_serial)/launch/aigo_serial.launch"/>
     <!-- differential controller parameters and basic localization -->
