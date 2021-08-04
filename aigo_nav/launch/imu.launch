@@ -1,0 +1,7 @@
+<launch>
+    <node pkg ="mpu6050" type="mpu6050_node" name="mpu6050">
+        <remap from="/imu" to="/imu/data_raw"/>
+    </node>
+    <!--include file="$(find imu_filter_madgwick)/launch/imu_filter_madgwick.launch"/-->
+    <node pkg ="imu_complementary_filter" type="complementary_filter_node" name="imu_filter"/>
+</launch>

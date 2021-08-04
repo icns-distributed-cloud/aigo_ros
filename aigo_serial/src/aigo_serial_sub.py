@@ -5,7 +5,7 @@ from std_msgs.msg import Float32, Int32
 import serial, time, re
 
 ser_front = serial.Serial(\
-    port = '/dev/ttyUSB0', \
+    port = '/dev/ttyAMA2', \
     baudrate = 115200,
 )
 
@@ -23,8 +23,9 @@ if __name__ == '__main__':
     lwheel_desired_rate_sub = rospy.Subscriber('lwheel_desired_rate', Int32, left_callback)
     time.sleep(0.1)
     rwheel_desired_rate_sub = rospy.Subscriber('rwheel_desired_rate', Int32, right_callback)
+    stm32_msg = str(lwheel_desired_rate)+','+str(rwheel_desired_rate)
     
     while not rospy.is_shutdown():
         time.sleep(0.1)
-        ser_front.write(lwheel_desired_rate, b',', rwheel_desired_rate)
+        ser_front.write(stm32_msg)
     ser_front.close()

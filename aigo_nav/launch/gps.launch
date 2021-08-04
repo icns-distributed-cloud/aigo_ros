@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <arg name="port" default="/dev/ttyAMA1"/>
+    <arg name="baud" default="9600"/>
+    <arg name="frame_id" default="gps"/>
+    <arg name="use_GNSS_time" default="False"/>
+    <arg name="useRMC" default="False"/>
+    <arg name="time_ref_source" default="gps"/>
+    
+    <node name="nmea_serial_driver_node" pkg="nmea_navsat_driver" type="nmea_serial_driver">
+        <param name="port" value="$(arg port)"/>
+        <param name="baud" value="$(arg baud)"/>
+        <param name="frame_id" value="$(arg frame_id)"/>
+        <param name="use_GNSS_time" value="$(arg use_GNSS_time)"/>
+        <param name="time_ref_source" value="$(arg time_ref_source)"/>
+        <param name="useRMC" value="$(arg useRMC)"/>
+</node>
+</launch>

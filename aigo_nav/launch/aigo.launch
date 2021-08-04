@@ -10,11 +10,9 @@
     <!-- launch lidar, topic will be published to /scan-->
     <include file="$(find ydlidar_ros_driver)/launch/X4.launch"/>
     <!-- launch imu, topic will be published to /imu and filtered to /imu/data -->
-    <node pkg ="mpu6050" type="mpu6050_node" name="mpu6050"/>
-        <remap from="/imu" to="/imu/data_raw"/>
-    <node pkg ="imu_tools_madgwick" type="imu_filter_node" name="imu_filter"/>
+    <include file="$(find aigo_nav)/launch/imu.launch"/>
     <!-- launch gps, topic will be published to /dgps -->
-    <include file="$(find dgps_ros)/launch/dgps.launch"/>
+    <include file="$(find aigo_nav)/launch/gps.launch"/>
     <!-- launch laser odometry, topic will be published to /odom_rf2o -->
     <include file="$(find rf2o_laser_odometry)/launch/rf2o_laser_odometry.launch"/>
     <!-- launch robot_localization and navsat -->

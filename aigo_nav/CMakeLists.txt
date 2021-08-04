@@ -8,12 +8,7 @@ project(aigo_nav)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  move_base
-  rf2o_laser_odometry
-  tf
-  ydlidar_ros
-  dgps_ros
-  diff_drive
+
 )
 
 ## System dependencies are found with CMake's conventions

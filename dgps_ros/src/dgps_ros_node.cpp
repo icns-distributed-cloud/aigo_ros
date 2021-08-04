@@ -82,7 +82,7 @@ int main(int argc, char **argv)
     args.parity = SPAPARITY_NONE;
     args.stopbits = SPASTOPBITS_1;
     args.databits = SPADATABITS_8;
-    args.baud = SPABAUD_115200;
+    args.baud = SPABAUD_9600;
     if( serialPort.empty())
         args.serdevice = 0;//"/dev/ttyUSB0";  
     else

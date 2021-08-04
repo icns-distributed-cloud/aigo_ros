@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-    <node pkg="dgps_ros" type="dgps_ros_node" name="dgps" output="screen">
+    <node pkg="dgps_ros" type="dgps_ros_node" name="gps" output="screen">
         <param name="server"  value="www.gnssdata.or.kr"/>
         <param name="port"  value="2101"/>
         <param name="username"  value="clapd10@khu.ac.kr"/>
