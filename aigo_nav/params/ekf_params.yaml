@@ -31,7 +31,7 @@ ekf_se_odom: # Used only for broadcasting odom to base_link transforms
 # -------------------------------------
 # Laser scanmatching odometry:
 
-  odom1: /odom_rf2o
+  odom1: /rf2o_laser_odometry/odom_rf2o
   odom1_config: [false, false, false,
                  false, false, false,
                  true,  true,  true,
@@ -122,7 +122,7 @@ ekf_se_map:
 # -------------------------------------
 # GPS odometry:
 
-  odom1: /aigo_nav/odometry/gps
+  odom1: /odometry/gps
   odom1_config: [true,  true,  false,
                  false, false, false,
                  false, false, false,
@@ -136,7 +136,7 @@ ekf_se_map:
 # -------------------------------------
 #  Laser scanmatching odometry:
 
-  odom2: /odom_rf2o
+  odom2: /rf2o_laser_odometry/odom_rf2o
   odom2_config: [false, false, false,
                  false, false, false,
                  true,  true,  true,

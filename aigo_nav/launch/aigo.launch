@@ -11,7 +11,7 @@
     <include file="$(find ydlidar_ros_driver)/launch/X4.launch"/>
     <!-- launch imu, topic will be published to /imu and filtered to /imu/data -->
     <include file="$(find aigo_nav)/launch/imu.launch"/>
-    <!-- launch gps, topic will be published to /dgps -->
+    <!-- launch gps, topic will be published to /fix -->
     <include file="$(find aigo_nav)/launch/gps.launch"/>
     <!-- launch laser odometry, topic will be published to /odom_rf2o -->
     <include file="$(find rf2o_laser_odometry)/launch/rf2o_laser_odometry.launch"/>

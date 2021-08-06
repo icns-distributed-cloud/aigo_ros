@@ -10,10 +10,11 @@
     <remap from="odometry/filtered" to="odometry/filtered_map"/>
   </node>
 
-  <node pkg="robot_localization" type="navsat_transform_node" name="navsat_transform" clear_params="true" output="screen">
+  <node pkg="robot_localization" type="navsat_transform_node" name="navsat_transform" output="screen">
+    <param name="publish_filtered_gps" value = "true"/>
       <remap from="odometry/filtered" to="odometry/filtered_map"/>
       <remap from="gps/fix" to="fix"/>
-      <remap from="imu/data" to="imu/data"/>
+      <remap from="/imu/data" to="imu/data"/>
   </node>
 
 </launch>
