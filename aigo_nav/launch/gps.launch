@@ -12,7 +12,5 @@
         <param name="frame_id" value="$(arg frame_id)"/>
         <param name="time_ref_source" value="$(arg time_ref_source)"/>
         <param name="useRMC" value="$(arg useRMC)"/>
-</node>
- <node pkg="tf" type="static_transform_publisher" name="base_link_to_gps"
-    args="0.0 0.0 0.3 0.0 0.0 0.0 /base_link /gps 40" />
+    </node>
 </launch>
