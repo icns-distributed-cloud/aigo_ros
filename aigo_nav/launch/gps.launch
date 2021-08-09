@@ -13,4 +13,5 @@
         <param name="time_ref_source" value="$(arg time_ref_source)"/>
         <param name="useRMC" value="$(arg useRMC)"/>
     </node>
+    <remap from="/gps" to="gps"/>
 </launch>

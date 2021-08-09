@@ -15,6 +15,7 @@
       <remap from="odometry/filtered" to="odometry/filtered_map"/>
       <remap from="gps/fix" to="fix"/>
       <remap from="/imu/data" to="imu/data"/>
+<remap from="/gps" to="gps"/>
   </node>
 
 </launch>

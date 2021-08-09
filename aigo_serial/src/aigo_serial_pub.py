@@ -18,7 +18,7 @@ def is_int(s):
 def read_serial(): # read a serial data and determine source of the serial
     serial_data = ser_front.readline()
     ser_front.flushInput()
-    ser_front.flushOutput()
+
     if serial_data[0:1] == "e":
         serial_data = serial_data[1:]
         read_encoder(serial_data)
