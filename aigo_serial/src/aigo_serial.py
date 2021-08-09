@@ -8,6 +8,13 @@ ser_front = serial.Serial( \
     baudrate=115200,
 )
 
+
+def left_callback(msg):
+    lwheel_desired_rate = msg.data
+
+def right_callback(msg):
+    rwheel_desired_rate = msg.data
+
 def is_int(s):
     try:
         int(s)
@@ -90,7 +97,10 @@ def read_imu(serial_data):
 # ticks : cumulative encoder ticks, rate : encoder ticks per second
 if __name__ == '__main__':
     rospy.init_node('aigo_serial_pub', anonymous=False) # initialize node
-    
+    rospy.init_node('aigo_serial_sub')
+    lwheel_desired_rate = 0
+    rwheel_desired_rate = 0
+
     tick_data = [0, 0]
     
     #lidar
@@ -110,6 +120,10 @@ if __name__ == '__main__':
     lwheel_rate_msg = Float32()
     rwheel_rate_msg = Float32()
     
+    lwheel_desired_rate_sub = rospy.Subscriber('lwheel_desired_rate', Int32, left_callback)
+    rwheel_desired_rate_sub = rospy.Subscriber('rwheel_desired_rate', Int32, right_callback)
+    stm32_msg = str(lwheel_desired_rate)+','+str(rwheel_desired_rate)
+    
     #imu_pub = rospy.Publisher('imu', Imu, queue_size=1)
     #imu_msg = Imu()
 
@@ -128,6 +142,7 @@ if __name__ == '__main__':
 
         #publish imu
         #imu_pub.publish(imu_msg)
+        ser_front.write(stm32_msg)
         time.sleep(0.1)
     
     ser_front.close()
