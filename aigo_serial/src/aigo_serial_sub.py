@@ -26,6 +26,7 @@ if __name__ == '__main__':
     while not rospy.is_shutdown():
         time.sleep(0.1)
         ser_front.write(stm32_msg)
+	ser_front.flushInput()
     	ser_front.flushOutput()
 ser_front.close()
     

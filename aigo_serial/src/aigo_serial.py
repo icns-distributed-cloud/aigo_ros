@@ -121,7 +121,7 @@ if __name__ == '__main__':
     
     lwheel_desired_rate_sub = rospy.Subscriber('lwheel_desired_rate', Int32, left_callback)
     rwheel_desired_rate_sub = rospy.Subscriber('rwheel_desired_rate', Int32, right_callback)
-    stm32_msg = str(lwheel_desired_rate)+','+str(rwheel_desired_rate)
+    
     
     #imu_pub = rospy.Publisher('imu', Imu, queue_size=1)
     #imu_msg = Imu()
@@ -141,6 +141,7 @@ if __name__ == '__main__':
 
         #publish imu
         #imu_pub.publish(imu_msg)
+	stm32_msg = str(lwheel_desired_rate)+','+str(rwheel_desired_rate)+'/'
         ser_front.write(stm32_msg)
         time.sleep(0.1)
     
