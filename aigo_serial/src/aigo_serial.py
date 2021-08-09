@@ -96,8 +96,7 @@ def read_imu(serial_data):
 
 # ticks : cumulative encoder ticks, rate : encoder ticks per second
 if __name__ == '__main__':
-    rospy.init_node('aigo_serial_pub', anonymous=False) # initialize node
-    rospy.init_node('aigo_serial_sub')
+    rospy.init_node('aigo_serial') # initialize node
     lwheel_desired_rate = 0
     rwheel_desired_rate = 0
 
