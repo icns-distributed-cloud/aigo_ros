@@ -7,8 +7,6 @@ ser_front = serial.Serial( \
     port='/dev/ttyAMA2', \
     baudrate=115200,
 )
-left = 0
-right = 0
 def left_callback(msg):
     global left 
     left = msg.data
@@ -101,6 +99,8 @@ if __name__ == '__main__':
     rospy.init_node('aigo_serial') # initialize node
 
     tick_data = [0, 0]
+    global left
+    global right
     left = 0
     right = 0
     #lidar
