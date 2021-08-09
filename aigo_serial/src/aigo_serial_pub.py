@@ -18,7 +18,7 @@ def is_int(s):
 def read_serial(): # read a serial data and determine source of the serial
     serial_data = ser_front.readline()
     ser_front.flushInput()
-
+    ser_front.flushOutput()
     if serial_data[0:1] == "e":
         serial_data = serial_data[1:]
         read_encoder(serial_data)
@@ -118,7 +118,7 @@ if __name__ == '__main__':
 
         #publish encoder
         lwheel_tick_pub.publish(lwheel_tick_msg)
-        lwheel_rate_pub.publish(rwheel_rate_msg)
+        lwheel_rate_pub.publish(lwheel_rate_msg)
 
         rwheel_tick_pub.publish(rwheel_tick_msg)
         rwheel_rate_pub.publish(rwheel_rate_msg) 
