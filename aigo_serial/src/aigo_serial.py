@@ -7,13 +7,15 @@ ser_front = serial.Serial( \
     port='/dev/ttyAMA2', \
     baudrate=115200,
 )
-
-
+left = 0
+right = 0
 def left_callback(msg):
-    lwheel_desired_rate = msg.data
+    global left 
+    left = msg.data
 
 def right_callback(msg):
-    rwheel_desired_rate = msg.data
+    global right 
+    right = msg.data
 
 def is_int(s):
     try:
@@ -97,11 +99,10 @@ def read_imu(serial_data):
 # ticks : cumulative encoder ticks, rate : encoder ticks per second
 if __name__ == '__main__':
     rospy.init_node('aigo_serial') # initialize node
-    lwheel_desired_rate = 0
-    rwheel_desired_rate = 0
 
     tick_data = [0, 0]
-    
+    left = 0
+    right = 0
     #lidar
     #scan_pub = rospy.Publisher('scan', LaserScan, queue_size = 1)
     #scan_msg = LaserScan()
@@ -141,8 +142,8 @@ if __name__ == '__main__':
 
         #publish imu
         #imu_pub.publish(imu_msg)
-	stm32_msg = str(lwheel_desired_rate)+','+str(rwheel_desired_rate)+'/'
-        ser_front.write(stm32_msg)
+        stm32_msg = str(left)+','+str(right)+'/'
+        
         time.sleep(0.1)
     
     ser_front.close()
