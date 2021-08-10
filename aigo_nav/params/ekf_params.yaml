@@ -95,11 +95,11 @@ ekf_se_map:
   frequency: 30
   sensor_timeout: 0.1
   two_d_mode: true
-  transform_time_offset: 0.0
+  transform_time_offset: 0.2
   transform_timeout: 0.0
   print_diagnostics: true
   debug: false
-
+  predict_to_current_time: true
   map_frame: map
   odom_frame: odom
   base_link_frame: base_link
