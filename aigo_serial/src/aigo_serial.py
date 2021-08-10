@@ -143,7 +143,7 @@ if __name__ == '__main__':
         #publish imu
         #imu_pub.publish(imu_msg)
         stm32_msg = str(left)+','+str(right)+'/'
-        
+        ser_front.write(stm32_msg)
         time.sleep(0.1)
     
     ser_front.close()
