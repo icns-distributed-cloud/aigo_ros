@@ -22,7 +22,7 @@
     <rosparam subst_value="true">
       ticks_per_meter: $(arg ticks_per_meter)
       wheel_separation: $(arg wheel_separation)
-      max_motor_speed: 100
+      max_motor_speed: 300
       timeout: 1.0
     </rosparam>
     <!--remap from="cmd_vel" to="/robot/cmd_vel" /-->
