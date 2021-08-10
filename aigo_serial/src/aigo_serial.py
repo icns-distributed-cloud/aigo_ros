@@ -8,11 +8,9 @@ ser_front = serial.Serial( \
     baudrate=115200,
 )
 def left_callback(msg):
-    global left 
     left = msg.data
 
 def right_callback(msg):
-    global right 
     right = msg.data
 
 def is_int(s):
