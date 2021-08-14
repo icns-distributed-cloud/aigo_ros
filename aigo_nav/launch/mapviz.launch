@@ -1,5 +1,5 @@
 <launch>
-<node pkg="mapviz" type="mapviz" name="mapviz"></node>
+<!--<node pkg="mapviz" type="mapviz" name="mapviz"></node>-->
 <node pkg="swri_transform_util" type="initialize_origin.py" name="initialize_origin" >
 <param name="local_xy_frame" value="/map"/>
 <param name="local_xy_origin" value="lac"/>
