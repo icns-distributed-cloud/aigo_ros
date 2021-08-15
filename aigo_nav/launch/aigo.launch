@@ -1,18 +1,19 @@
 <?xml version="1.0"?>
-<launch>
-    <!-- load robot description -->
-    <!--include file="$(find aigo_urdf)/launch/aigo_urdf.launch"/-->
-    <!-- launch aigo_serial to communicate with STM32 board -->
-    <include file="$(find aigo_serial)/launch/aigo_serial.launch"/>
-    <!-- differential controller parameters and basic localization -->
+<launch>    
+<!-- load robot description -->
     <!-- odometry topic will be published to /odom -->
     <include file="$(find diff_drive)/launch/aigo.launch"/>
+
+    <!--include file="$(find aigo_urdf)/launch/aigo_urdf.launch"/-->
     <!-- launch lidar, topic will be published to /scan-->
     <include file="$(find ydlidar_ros_driver)/launch/X4.launch"/>
     <!-- launch imu, topic will be published to /imu and filtered to /imu/data -->
     <include file="$(find aigo_nav)/launch/imu.launch"/>
     <!-- launch gps, topic will be published to /fix -->
     <include file="$(find aigo_nav)/launch/gps.launch"/>
+    <!-- launch aigo_serial to communicate with STM32 board -->
+    <include file="$(find aigo_serial)/launch/aigo_serial.launch"/>
+    <!-- differential controller parameters and basic localization -->
     <!-- launch laser odometry, topic will be published to /odom_rf2o -->
     <include file="$(find rf2o_laser_odometry)/launch/rf2o_laser_odometry.launch"/>
     <!-- launch robot_localization and navsat -->
@@ -22,5 +23,5 @@
     <!-- enable move_base -->
     <include file="$(find aigo_nav)/launch/move_base_nav.launch"/>
     <!-- send goals to move on ! :) -->
-    <include file="$(find aigo_waypoint)/launch/aigo_waypoint.launch"/>
+    <!--include file="$(find aigo_waypoint)/launch/aigo_waypoint.launch"/-->
 </launch>

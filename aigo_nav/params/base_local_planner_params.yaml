@@ -1,6 +1,6 @@
 
 TrajectoryPlannerROS:
-  max_vel_x: 0.3
+  max_vel_x: 0.4
   min_vel_x: 0.0 # Allowing velocities too low will will stop the obstacle avoidance because low velocities won't actually be high enough to move the robot
   max_vel_theta: 1.0
   min_vel_theta: -1.0

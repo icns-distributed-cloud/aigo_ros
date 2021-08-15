@@ -55,7 +55,7 @@ ekf_se_odom: # Used only for broadcasting odom to base_link transforms
   imu0_differential: false
   imu0_relative: false
   imu0_queue_size: 10
-  imu0_remove_gravitational_acceleration: true
+#  imu0_remove_gravitational_acceleration: true
 
   use_control: false
 
@@ -100,6 +100,7 @@ ekf_se_map:
   print_diagnostics: true
   debug: false
   predict_to_current_time: true
+  
   map_frame: map
   odom_frame: odom
   base_link_frame: base_link
@@ -160,7 +161,7 @@ ekf_se_map:
   imu0_differential: true
   imu0_relative: false
   imu0_queue_size: 10
-  imu0_remove_gravitational_acceleration: true
+#  imu0_remove_gravitational_acceleration: true
 
   use_control: false
 
