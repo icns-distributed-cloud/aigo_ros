@@ -28,7 +28,7 @@
     <param name="iterations" value="5"/>
     <param name="lsigma" value="0.075"/>
     <param name="ogain" value="3.0"/>
-    <param name="minimumScore" value="0.0"/>
+    <param name="minimumScore" value="3.0"/>
 
     <!-- Number of beams to skip in each scan. -->
     <param name="lskip" value="0"/>
