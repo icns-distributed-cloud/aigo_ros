@@ -3,7 +3,6 @@
 <!-- load robot description -->
     <!-- odometry topic will be published to /odom -->
     <include file="$(find diff_drive)/launch/aigo.launch"/>
-
     <!--include file="$(find aigo_urdf)/launch/aigo_urdf.launch"/-->
     <!-- launch lidar, topic will be published to /scan-->
     <include file="$(find ydlidar_ros_driver)/launch/X4.launch"/>
@@ -15,11 +14,11 @@
     <include file="$(find aigo_serial)/launch/aigo_serial.launch"/>
     <!-- differential controller parameters and basic localization -->
     <!-- launch laser odometry, topic will be published to /odom_rf2o -->
-    <include file="$(find rf2o_laser_odometry)/launch/rf2o_laser_odometry.launch"/>
+    <!--include file="$(find rf2o_laser_odometry)/launch/rf2o_laser_odometry.launch"/-->
     <!-- launch robot_localization and navsat -->
     <include file="$(find aigo_nav)/launch/localization_run.launch"/>
     <!-- run gmapping to create map -->
-    <include file="$(find aigo_nav)/launch/gmapping.launch"/>
+    <!--include file="$(find aigo_nav)/launch/gmapping.launch"/-->
     <!-- enable move_base -->
     <include file="$(find aigo_nav)/launch/move_base_nav.launch"/>
     <!-- send goals to move on ! :) -->
