@@ -8,9 +8,11 @@ ser_front = serial.Serial( \
     baudrate=115200,
 )
 def left_callback(msg):
+    global left
     left = msg.data
 
 def right_callback(msg):
+    global right
     right = msg.data
 
 def is_int(s):
@@ -140,8 +142,10 @@ if __name__ == '__main__':
 
         #publish imu
         #imu_pub.publish(imu_msg)
-        stm32_msg = str(left)+','+str(right)+'/'
-        stm32_msg = stm32_msg.encode('utf-8')
+	mytuple = (str(int(left)), ",", str(int(right)), "/")
+        #stm32_msg = str(left)+","+str(right)+"/"
+        stm32_msg = "".join(mytuple)
+	stm32_msg = stm32_msg.encode('utf-8')
         ser_front.write(stm32_msg)
         time.sleep(0.1)
     

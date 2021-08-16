@@ -1,4 +1,6 @@
 <?xml version="1.0"?>
 <launch>
     <include file="$(find mpu9250-driver)/launch/mpu9250.launch"/>
+  <!--node pkg="tf" type="static_transform_publisher" name="base_link_to_imu"
+    args="0.0 0.0 0.3 0.0 0.0 0.0 /base_link /imu_frame 40" /-->
 </launch>

@@ -14,7 +14,7 @@ TrajectoryPlannerROS:
 
   # New Stuff
 
-  escape_vel: -0.2
+  escape_vel: -0.02
 
   # Goal Tolerance Parameters
   yaw_goal_tolerance: 0.1  # in rads

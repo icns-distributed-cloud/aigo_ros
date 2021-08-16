@@ -1,6 +1,6 @@
 <launch>
 
-  <arg name="ticks_per_meter" value="10000" />
+  <arg name="ticks_per_meter" value="20000" />
   <arg name="wheel_separation" value="0.2" />
   <arg name="urdf_file" default="$(find aigo_urdf)/urdf/aigo.urdf" />
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg urdf_file)" />
@@ -22,7 +22,7 @@
     <rosparam subst_value="true">
       ticks_per_meter: $(arg ticks_per_meter)
       wheel_separation: $(arg wheel_separation)
-      max_motor_speed: 300
+      max_motor_speed: 500
       timeout: 1.0
     </rosparam>
     <!--remap from="cmd_vel" to="/robot/cmd_vel" /-->
