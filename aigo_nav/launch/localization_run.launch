@@ -14,7 +14,7 @@
     <param name="publish_filtered_gps" value = "true"/>
       <remap from="odometry/filtered" to="odometry/filtered_map"/>
       <remap from="gps/fix" to="fix"/>
-      <remap from="/imu/data" to="imu/data"/>
+      <remap from="/imu/data" to="imu/data_raw"/>
 <remap from="/gps" to="gps"/>
   </node>
 
