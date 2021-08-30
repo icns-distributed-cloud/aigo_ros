@@ -1,7 +1,8 @@
 # For parameter descriptions, please refer to the template parameter files for each node.
 
+
 ekf_se_odom: # Used only for broadcasting odom to base_link transforms
-  frequency: 5
+  frequency: 20
   sensor_timeout: 0.2
   two_d_mode: true
   transform_time_offset: 0.05
@@ -18,7 +19,7 @@ ekf_se_odom: # Used only for broadcasting odom to base_link transforms
 # Wheel odometry:
 
   odom0: /odom
-  odom0_config: [false, false, false,
+  odom0_config: [true, true, false,
                  false, false, false,
                  true,  true,  false,
                  false, false, false,
@@ -31,23 +32,22 @@ ekf_se_odom: # Used only for broadcasting odom to base_link transforms
 # -------------------------------------
 # Laser scanmatching odometry:
 
-#  odom0: /rf2o_laser_odometry/odom_rf2o
-# odom0_config: [false, false, false,
+#  odom1: /rf2o_laser_odometry/odom_rf2o
+#  odom1_config: [true, true, false,
 #                 false, false, false,
 #                 true,  true,  false,
 #                 true, true, true,
 #                 false, false, false]
-#  odom0_queue_size: 10
-#  odom0_nodelay: true
-#  odom0_differential: false
-#  odom0_relative: false
+#  odom1_queue_size: 10
+#  odom1_nodelay: true
+#  odom1_differential: false
+#  odom1_relative: false
 
 # --------------------------------------
 # imu configure:
-
-  imu0: /imu/data_raw
+  imu0: /imu
   imu0_config: [false, false, false,
-                true,  true,  true,
+                false,  false,  false,
                 false, false, false,
                 false,  false,  true,
                 true,  true, false]
@@ -92,7 +92,7 @@ ekf_se_odom: # Used only for broadcasting odom to base_link transforms
                                 0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    1.0]
 
 ekf_se_map:
-  frequency: 5
+  frequency: 20
   sensor_timeout: 0.2
   two_d_mode: true
   transform_time_offset: 0.05
@@ -105,27 +105,11 @@ ekf_se_map:
   odom_frame: odom
   base_link_frame: base_link
   world_frame: map
-
-# -------------------------------------
-#  Laser scanmatching odometry:s
-
-#  odom0: /rf2o_laser_odometry/odom_rf2o
-#  odom0_config: [false, false, false,
-#                 false, false, false,
-#                 true,  true,  false,
-#                 true, true, true,
-#                 false, false, false]
-#  odom0_queue_size: 10
-#  odom0_nodelay: true
-#  odom0_differential: false
-#  odom0_relative: false
-
-
 # -------------------------------------
 # Wheel odometry:
 
   odom0: /odom
-  odom0_config: [false, false, false,
+  odom0_config: [true, true, false,
                  false, false, false,
                  true,  true,  false,
                  false, false, false,
@@ -136,26 +120,42 @@ ekf_se_map:
   odom0_relative: false
 
 # -------------------------------------
+#  Laser scanmatching odometry:s
+
+#  odom1: /rf2o_laser_odometry/odom_rf2o
+#  odom1_config: [true, true, false,
+#                 false, false, false,
+#                true,  true,  false,
+#                true, true, true,
+#                false, false, false]
+#  odom1_queue_size: 10
+#  odom1_nodelay: true
+#  odom1_differential: false
+#  odom1_relative: false
+
+
+
+# -------------------------------------
 # GPS odometry:
 
-  odom1: /odometry/gps
-  odom1_config: [true,  true,  false,
-                 false, false, false,
-                 false, false, false,
-                 false, false, false,
-                 false, false, false]
-  odom1_queue_size: 10
-  odom1_nodelay: true
-  odom1_differential: false
-  odom1_relative: false
+#  odom1: /odometry/gps
+#  odom1_config: [true,  true,  false,
+#                 false, false, false,
+#                 false, false, false,
+#                 false, false, false,
+#                 false, false, false]
+#  odom1_queue_size: 10
+#  odom1_nodelay: true
+#  odom1_differential: false
+#  odom1_relative: false
 
 
 # --------------------------------------
 # imu configure:
 
-  imu0: /imu/data_raw
+  imu0: /imu
   imu0_config: [false, false, false,
-                true, true, true,
+                false, false, false,
                 false, false, false,
                 false, false,  true,
                 true, true, false]
