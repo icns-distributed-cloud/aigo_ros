@@ -7,7 +7,9 @@
     <!-- launch lidar, topic will be published to /scan-->
     <include file="$(find ydlidar_ros_driver)/launch/X4.launch"/>
     <!-- launch imu, topic will be published to /imu and gps topic will be published to /gps -->
-    <include file="$(find wit_node)/launch/wit.launch"/>-->
+    <include file="$(find wit_node)/launch/wit.launch"/>
+    <include file="$(find ublox_gps)/launch/ublox_zed-f9p.launch"/>
+    <!--include file="$(find ntrip_ros)/launch/ntrip_ros.launch"/-->
     <!-- launch aigo_serial to communicate with STM32 board -->
     <include file="$(find aigo_serial)/launch/aigo_serial.launch"/>
     <!-- differential controller parameters and basic localization -->
@@ -22,5 +24,7 @@
     <!-- execute transform to use mapviz-->
     <include file = "$(find aigo_nav)/launch/mapviz.launch"/>
     <!-- send goals to move on ! :) -->
+    <include file = "$(find gps_goal)/launch/gps_goal.launch"/>
     <!--include file="$(find aigo_waypoint)/launch/aigo_waypoint.launch"/-->
+  <remap from="ublox_gps/fix" to="fix"/>
 </launch>

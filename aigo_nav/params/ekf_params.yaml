@@ -19,7 +19,7 @@ ekf_se_odom: # Used only for broadcasting odom to base_link transforms
 # Wheel odometry:
 
   odom0: /odom
-  odom0_config: [true, true, false,
+  odom0_config: [false, false, false,
                  false, false, false,
                  true,  true,  false,
                  false, false, false,
@@ -46,11 +46,11 @@ ekf_se_odom: # Used only for broadcasting odom to base_link transforms
 # --------------------------------------
 # imu configure:
   imu0: /imu
-  imu0_config: [false, false, false,
-                false,  false,  false,
-                false, false, false,
-                false,  false,  true,
-                true,  true, false]
+  imu0_config: [false,  false, false,
+                false,  false, false,
+                false,  false, false,
+                false,  false, true,
+                false,  false, false]
   imu0_nodelay: false
   imu0_differential: false
   imu0_relative: false
@@ -109,7 +109,7 @@ ekf_se_map:
 # Wheel odometry:
 
   odom0: /odom
-  odom0_config: [true, true, false,
+  odom0_config: [false, false, false,
                  false, false, false,
                  true,  true,  false,
                  false, false, false,
@@ -138,16 +138,16 @@ ekf_se_map:
 # -------------------------------------
 # GPS odometry:
 
-#  odom1: /odometry/gps
-#  odom1_config: [true,  true,  false,
-#                 false, false, false,
-#                 false, false, false,
-#                 false, false, false,
-#                 false, false, false]
-#  odom1_queue_size: 10
-#  odom1_nodelay: true
-#  odom1_differential: false
-#  odom1_relative: false
+  #  odom1: /odometry/gps
+  #odom1_config: [true,  true,  false,
+  #               false, false, false,
+  #               false, false, false,
+  #               false, false, false,
+  #               false, false, false]
+  #odom1_queue_size: 10
+  #odom1_nodelay: true
+  #odom1_differential: false
+  #odom1_relative: false
 
 
 # --------------------------------------
@@ -157,8 +157,8 @@ ekf_se_map:
   imu0_config: [false, false, false,
                 false, false, false,
                 false, false, false,
-                false, false,  true,
-                true, true, false]
+                false, false, true,
+                false, false, false]
   imu0_nodelay: true
   imu0_differential: false
   imu0_relative: false

@@ -29,17 +29,7 @@ def read_serial(): # read a serial data and determine source of the serial
     if serial_data[0:1] == "e":
         serial_data = serial_data[1:]
         read_encoder(serial_data)
-    '''
-    elif serial_data[0:1] == "i":
-        serial_data = serial_data[1:]
-        #read_imu(serial_data)
-    '''
 
-    '''
-    elif serial_data[0:1] == "l":
-        serial_data = serial_data[1:]
-        read_lidar(serial_data)
-    '''
 def read_encoder(serial_data): # receive each side of encoder count from STM32F4 Discovery & convert to velocity
     rate_data = []
     encoder_data = []
@@ -62,37 +52,6 @@ def read_encoder(serial_data): # receive each side of encoder count from STM32F4
 
     lwheel_tick_msg.data = tick_data[0]
     rwheel_tick_msg.data = tick_data[1]
-'''
-def read_lidar(serial_data):
-    scan_data = []
-    #string -> integer
-    scan_data = serial_data.split(',')
-    for i, v in enumerate(scan_data):
-        if is_int(v) == True:
-            v = int(v)
-            scan_data.append(v)
-    time = rospy.Time.now
-    scan_msg.header.stamp = time
-    scan_msg.header.frame_id = "laser_frame"
-    scan_msg.angle_min = -180 * 0.017 # degree to radian
-    scan_msg.angle_max = 180 * 0.017 # degree to radian
-    scan_msg.angle_increment = 1 * 0.017 # degree to radian
-    scan_msg.scan_time = 0.1 # MOTOR_CTR 5V --> works at 10Hz
-    scan_msg.time_increment = 0.1 / 360 
-    scan_msg.range_min = 0
-    scan_msg.range_max = 12
-    scan_msg.ranges.resize(361)  # 0 ~ 360 degree !!
-    for i in range(0, 359):
-        scan_msg.ranges[i] = scan_data[i]
-
-def read_imu(serial_data):
-    imu_data = []
-    imu_data = serial_data.split(',')
-    for i, v in enumerate(imu_data):
-        if is_int(v) == True:
-            v = int(v)
-'''    
-
 
 # ticks : cumulative encoder ticks, rate : encoder ticks per second
 if __name__ == '__main__':
