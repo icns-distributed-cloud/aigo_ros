@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import serial, time, rospy, re
+import serial, time, rospy, re, os
 from std_msgs.msg import Float32, Int32
 from sensor_msgs.msg import LaserScan, Imu
 ser_front = serial.Serial( \
@@ -14,6 +14,29 @@ def left_callback(msg):
 def right_callback(msg):
     global right
     right = msg.data
+
+def calculate_pose():
+    global left_vel
+    global right_vel
+    #in STM32, MOTOR_SPEED = OUTPUT * 15 (MOTOR_SPEED < 9000)
+    #turn right
+    if(left > right+100):
+        left_vel = 600
+        right_vel = 600
+    #turn left
+    elif(left+100 < right):
+        left_vel = 600
+        right_vel = -600
+    elif(left > 0 and right > 0):
+        left_vel = 400
+        right_vel = 400
+    elif(left < 0 and right < 0):
+        left_vel = -400
+        right_vel = -400
+    else:
+        left_vel = 0
+        right_vel = 0
+
 
 def is_int(s):
     try:
@@ -101,11 +124,19 @@ if __name__ == '__main__':
 
         #publish imu
         #imu_pub.publish(imu_msg)
-	mytuple = (str(int(left)), ",", str(int(right)), "/")
+        calculate_pose()
+	mytuple = (str(int(left_vel)), ",", str(int(right_vel)), "/")
         #stm32_msg = str(left)+","+str(right)+"/"
         stm32_msg = "".join(mytuple)
-	stm32_msg = stm32_msg.encode('utf-8')
+        stm32_msg = stm32_msg.encode('utf-8')
         ser_front.write(stm32_msg)
         time.sleep(0.1)
-    
+    left_vel = 0
+    right_vel = 0
+    mytuple = (str(int(left_vel)), ",", str(int(right_vel)), "/")
+    #stm32_msg = str(left)+","+str(right)+"/"
+    stm32_msg = "".join(mytuple)
+    stm32_msg = stm32_msg.encode('utf-8')
+    ser_front.write(stm32_msg)
     ser_front.close()
+
