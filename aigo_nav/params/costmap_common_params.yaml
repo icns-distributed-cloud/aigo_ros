@@ -5,8 +5,8 @@ z_resolution: 1 # The z resolution of the map in meters/cell.
 z_voxels: 2  # The number of voxels to in each vertical column, the height of the grid is z resolution * z voxels.
 #
 
-obstacle_range: 1.5 # The default maximum distance from the robot at which an obstacle will be inserted into the cost map in meters.
-raytrace_range: 1.5 # The default range in meters at which to raytrace out obstacles from the map using sensor data
+obstacle_range: 1.0 # The default maximum distance from the robot at which an obstacle will be inserted into the cost map in meters.
+raytrace_range: 1.0 # The default range in meters at which to raytrace out obstacles from the map using sensor data
 
 #
 publish_voxel_map: false
@@ -20,4 +20,4 @@ cost_scaling_factor: 10 # slope of the cost decay curve with respect to distance
 
 observation_sources: laser_scan_sensor
 
-laser_scan_sensor: {sensor_frame: base_link, data_type: LaserScan, topic: scan, marking: true, clearing: true}
+laser_scan_sensor: {sensor_frame: base_link, data_type: LaserScan, topic: scan, expected_update_rate: 0.5, marking: true, clearing: true}
