@@ -1,7 +1,7 @@
 navsat_transform:
   frequency: 10
   delay: 3.0
-  magnetic_declination_radians: 0.0842
+  magnetic_declination_radians: 0.14552381
   yaw_offset: 0 #-1.57080
   zero_altitude: true
   broadcast_utm_transform: true

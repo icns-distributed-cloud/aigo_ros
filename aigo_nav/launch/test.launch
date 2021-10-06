@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>    
+<!-- load robot description -->
+    <!-- odometry topic will be published to /odom -->
+    <include file="$(find aigo_stt_tts)/launch/aigo_voice.launch"/>
+  <remap from="ublox_gps/fix" to="fix"/>
+</launch>
