@@ -68,7 +68,7 @@ def calc_goal(origin_lat, origin_long, goal_lat, goal_long, origin):
 class GpsGoal():
   def __init__(self):
     rospy.init_node('gps_goal')
-
+    self.count = 0
     rospy.loginfo("Connecting to move_base...")
     self.move_base = actionlib.SimpleActionClient('move_base', MoveBaseAction)
     self.move_base.wait_for_server()
@@ -91,7 +91,11 @@ class GpsGoal():
     # Calculate goal x and y in the frame_id given the frame's origin GPS and a goal GPS location
     x, y = calc_goal(self.origin_lat, self.origin_long, goal_lat, goal_long, self.origin)
     # Create move_base goal
-    self.publish_goal(x=x, y=y, z=z, yaw=yaw, roll=roll, pitch=pitch)
+    if self.count == 0:
+        self.publish_goal(x=x, y=y, z=z, yaw=yaw, roll=roll, pitch=pitch)
+    else:
+        self.publish_goal(x=x*(-1), y=y*(-1), z=z, yaw=yaw, roll=roll, pitch=pitch)
+    self.count+=1
 
   def gps_goal_pose_callback(self, data):
     lat = data.pose.position.y
