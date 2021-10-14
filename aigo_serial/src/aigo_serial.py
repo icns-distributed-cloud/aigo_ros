@@ -28,11 +28,11 @@ def calculate_pose():
         left_vel = -600
         right_vel = 600
     elif(left > 0 and right > 0):
-        left_vel = 400
-        right_vel = 400
+        left_vel = 300
+        right_vel = 300
     elif(left < 0 and right < 0):
-        left_vel = -400
-        right_vel = -400
+        left_vel = -300
+        right_vel = -300
     else:
         left_vel = 0
         right_vel = 0
@@ -124,8 +124,8 @@ if __name__ == '__main__':
 
         #publish imu
         #imu_pub.publish(imu_msg)
-        # calculate_pose()
-	mytuple = (str(int(left)), ",", str(int(right)), "/")
+        calculate_pose()
+	mytuple = (str(int(left_vel)), ",", str(int(right_vel)), "/")
         #stm32_msg = str(left)+","+str(right)+"/"
         stm32_msg = "".join(mytuple)
         stm32_msg = stm32_msg.encode('utf-8')

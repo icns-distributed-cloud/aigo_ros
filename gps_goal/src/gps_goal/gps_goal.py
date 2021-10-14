@@ -81,6 +81,7 @@ class GpsGoal():
     time.sleep(3.0)
     self.origin = rad_offset
     self.origin_lat, self.origin_long = get_origin_lat_long()
+  
 
   def current_coord_callback(self, data):
     global current_latitude, current_longitude
