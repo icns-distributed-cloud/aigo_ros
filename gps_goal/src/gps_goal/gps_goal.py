@@ -65,6 +65,22 @@ def calc_goal(origin_lat, origin_long, goal_lat, goal_long, origin):
   rospy.loginfo("The translation from the origin to the goal is (x,y) {:.3f}, {:.3f} m.".format(x, y))
 
   return x, y
+def calc_angle(origin_lat, origin_long, goal_lat, goal_long, origin):
+  # Calculate distance and azimuth between GPS points
+  rospy.loginfo('Given GPS goal: lat %s, long %s.' % (goal_lat, goal_long))
+  geod = Geodesic.WGS84  # define the WGS84 ellipsoid
+  g = geod.Inverse(origin_lat, origin_long, goal_lat, goal_long) # Compute several geodesic calculations between two GPS points
+  hypotenuse = distance = g['s12'] # access distance
+  rospy.loginfo("The distance from the origin to the goal is {:.3f} m.".format(distance))
+  azimuth = g['azi1']
+  rospy.loginfo("The azimuth from the origin to the goal is {:.3f} degrees.".format(azimuth))
+
+  # Convert polar (distance and azimuth) to x,y translation in meters (needed for ROS) by finding side lenghs of a right-angle triangle
+  # Convert azimuth to radians
+  azimuth = math.radians(azimuth) - origin
+  #azimuth = 0
+  print(azimuth)
+  return azimuth
 
 class GpsGoal():
   def __init__(self):
@@ -101,8 +117,8 @@ class GpsGoal():
     self.count+=1
   def do_gps_angle(self, goal_lat, goal_long, z=0, yaw=0, roll=0, pitch=0):
     # compare between azimuth@AI-GO origin, geodesic inverse angle and publish yaw angle to AI-GO
-    angle_goal = calc_angle(self.origin_lat, self.origin_long, goal_lat, goal_long, self.origin)
-    self.publish_angle(
+    desired_angle = calc_angle(self.origin_lat, self.origin_long, goal_lat, goal_long, self.origin)
+    self.publish_angle(desired_angle, roll = roll, pitch = pitch)
 
   def gps_goal_pose_callback(self, data):
     lat = data.pose.position.y
@@ -140,6 +156,33 @@ class GpsGoal():
     print(data.latitude, data.longitude)
     self.do_gps_goal(data.latitude, data.longitude)
 
+  def publish_angle(self, yaw=0, roll=0, pitch=0):
+     # Create move_base goal
+    goal = MoveBaseGoal()
+    goal.target_pose.header.frame_id = rospy.get_param('~frame_id','map')
+    quaternion = tf.transformations.quaternion_from_euler(roll, pitch, yaw)
+    goal.target_pose.pose.orientation.x = quaternion[0]
+    goal.target_pose.pose.orientation.y = quaternion[1]
+    goal.target_pose.pose.orientation.z = quaternion[2]
+    goal.target_pose.pose.orientation.w = quaternion[3]
+    rospy.loginfo('Executing move_base goal to position with %s degrees yaw.' %
+            (yaw))
+    rospy.loginfo("To cancel the goal: 'rostopic pub -1 /move_base/cancel actionlib_msgs/GoalID -- {}'")
+
+    # Send goal
+    self.move_base.send_goal(goal)
+    rospy.loginfo('Inital goal status: %s' % GoalStatus.to_string(self.move_base.get_state()))
+    status = self.move_base.get_goal_status_text()
+    if status:
+      rospy.loginfo(status)
+
+    # Wait for goal result
+    self.move_base.wait_for_result()
+    rospy.loginfo('Final goal status: %s' % GoalStatus.to_string(self.move_base.get_state()))
+    print(GoalStatus.to_string(self.move_base.get_state()))
+    status = self.move_base.get_goal_status_text()
+    if status:
+      rospy.loginfo(status)
   def publish_goal(self, x=0, y=0, z=0, yaw=0, roll=0, pitch=0):
     # Create move_base goal
     goal = MoveBaseGoal()
