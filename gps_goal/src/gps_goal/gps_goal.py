@@ -58,6 +58,7 @@ def calc_goal(origin_lat, origin_long, goal_lat, goal_long, origin):
   # Convert polar (distance and azimuth) to x,y translation in meters (needed for ROS) by finding side lenghs of a right-angle triangle
   # Convert azimuth to radians
   azimuth = (math.radians(azimuth) - origin)*(-1)
+  #azimuth = 0
   print(azimuth)
   x = adjacent = math.cos(azimuth) * hypotenuse
   y = opposite = math.sin(azimuth) * hypotenuse
@@ -75,6 +76,7 @@ class GpsGoal():
     rospy.loginfo("Connected.")
     rospy.Subscriber('fix', NavSatFix, self.current_coord_callback)
     rospy.Subscriber('gps_goal_pose', PoseStamped, self.gps_goal_pose_callback)
+    rospy.Subscriber('gps_goal_angle', PoseStamped, self.gps_goal_angle_callback)
     rospy.Subscriber('gps_goal_fix', NavSatFix, self.gps_goal_fix_callback)
     rospy.Subscriber('/wit/raw_data', ImuGpsRaw, self.radian_callback)
     # Get the lat long coordinates of our map frame's origin which must be publshed on topic /local_xy_origin. We use this to calculate our goal within the map frame.
@@ -97,6 +99,10 @@ class GpsGoal():
     else:
         self.publish_goal(x=x*(-1), y=y*(-1), z=z, yaw=yaw, roll=roll, pitch=pitch)
     self.count+=1
+  def do_gps_angle(self, goal_lat, goal_long, z=0, yaw=0, roll=0, pitch=0):
+    # compare between azimuth@AI-GO origin, geodesic inverse angle and publish yaw angle to AI-GO
+    angle_goal = calc_angle(self.origin_lat, self.origin_long, goal_lat, goal_long, self.origin)
+    self.publish_angle(
 
   def gps_goal_pose_callback(self, data):
     lat = data.pose.position.y
@@ -107,6 +113,16 @@ class GpsGoal():
     pitch = euler[1]
     yaw = euler[2]
     self.do_gps_goal(lat, long, z=z, yaw=yaw, roll=roll, pitch=pitch)
+
+  def gps_goal_angle_callback(self, data):
+    lat = data.pose.position.y
+    long = data.pose.position.x
+    z = data.pose.position.z
+    euler = tf.transformations.euler_from_quaternion(data.pose.orientation)
+    roll = euler[0]
+    pitch = euler[1]
+    yaw = euler[2]
+    self.do_gps_angle(lat, long, z=z, yaw=yaw, roll=roll, pitch=pitch)
 
   def radian_callback(self, data):
     global rad_offset
