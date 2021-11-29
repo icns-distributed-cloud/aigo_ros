@@ -20,48 +20,19 @@ def calculate_pose():
     global right_vel
     #in STM32, MOTOR_SPEED = OUTPUT * 15 (MOTOR_SPEED < 9000)
     #turn right
-    mode = 0
     if(left > right+50):
-        if (mode = 0):
-            left_vel = 600
-            right_vel = -600
-            mode = 1
-        elif (mode = 1):
-            left_vel = 200
-            right_vel = 200
-            mode = 2
-        elif (mode = 2):
-            left_vel = 600
-            right_vel = -600
-            mode = 3
-        elif (mode = 3):
-            left_vel = -200
-            right_vel = -200
-            mode = 0
+        left_vel = 600
+        right_vel = -600
     #turn left
     elif(left+50 < right):
-        if (mode = 0):
-            left_vel = -600
-            right_vel = 600
-            mode = 1
-        elif (mode = 1):
-            left_vel = 200
-            right_vel = 200
-            mode = 2
-        elif (mode = 2):
-            left_vel = -600
-            right_vel = 600
-            mode = 3
-        elif (mode = 3):
-            left_vel = -200
-            right_vel = -200
-            mode = 0
+        left_vel = -600
+        right_vel = 600
     elif(left > 0 and right > 0):
-        left_vel = 300
-        right_vel = 300
+        left_vel = 400
+        right_vel = 400
     elif(left < 0 and right < 0):
-        left_vel = -300
-        right_vel = -300
+        left_vel = -400
+        right_vel = -400
     else:
         left_vel = 0
         right_vel = 0
@@ -162,7 +133,7 @@ if __name__ == '__main__':
         time.sleep(0.1)
     left_vel = 0
     right_vel = 0
-    mytuple = (str(int(left_vel)), ",", str(int(right_vel)), "/")
+    mytuple = (str(300), ",", str(300), "/")
     #stm32_msg = str(left)+","+str(right)+"/"
     stm32_msg = "".join(mytuple)
     stm32_msg = stm32_msg.encode('utf-8')
