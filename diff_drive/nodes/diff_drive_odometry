@@ -20,7 +20,7 @@ class OdometryNode:
 
     def main(self):
         self.odomPub = rospy.Publisher('odom', Odometry, queue_size=10)
-        self.tfPub = TransformBroadcaster()
+#        self.tfPub = TransformBroadcaster()
 
         rospy.init_node('diff_drive_odometry')
         self.nodeName = rospy.get_name()
@@ -55,13 +55,13 @@ class OdometryNode:
         pose = self.odometry.getPose()
 
         q = quaternion_from_euler(0, 0, pose.theta)
-        self.tfPub.sendTransform(
-            (pose.x, pose.y, 0),
-            (q[0], q[1], q[2], q[3]),
-            now,
-            self.baseFrameID,
-            self.odomFrameID
-        )
+#        self.tfPub.sendTransform(
+#            (pose.x, pose.y, 0),
+#            (q[0], q[1], q[2], q[3]),
+#            now,
+#            self.baseFrameID,
+#            self.odomFrameID
+#        )
 
         odom = Odometry()
         odom.header.stamp = now

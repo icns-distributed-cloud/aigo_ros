@@ -4,8 +4,10 @@
     <!-- launch lidar, topic will be published to /scan-->
     <include file="$(find ydlidar_ros_driver)/launch/X4.launch"/>
     <!-- launch imu, topic will be published to /imu and filtered to /imu/data -->
-    <include file="$(find aigo_nav)/launch/imu.launch"/>
+    <include file="$(find wit_node)/launch/wit.launch"/>
+    <include file="$(find ublox_gps)/launch/ublox_zed-f9p.launch"/>
     <!-- launch gps, topic will be published to /fix -->
-    <include file="$(find aigo_nav)/launch/gps.launch"/>
+    <!-- <include file="$(find aigo_nav)/launch/gps.launch"/> -->
     <!--include file="$(find ublox_gps)/launch/ublox_zed-f9p.launch"/-->
+    <include file="$(find ntrip_ros)/launch/ntrip_ros.launch"/>
 </launch>

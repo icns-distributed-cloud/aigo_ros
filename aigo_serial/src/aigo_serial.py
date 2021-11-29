@@ -20,13 +20,13 @@ def calculate_pose():
     global right_vel
     #in STM32, MOTOR_SPEED = OUTPUT * 15 (MOTOR_SPEED < 9000)
     #turn right
-    if(left > right+100):
-        left_vel = 600
-        right_vel = 600
-    #turn left
-    elif(left+100 < right):
+    if(left > right+50):
         left_vel = 600
         right_vel = -600
+    #turn left
+    elif(left+50 < right):
+        left_vel = -600
+        right_vel = 600
     elif(left > 0 and right > 0):
         left_vel = 400
         right_vel = 400

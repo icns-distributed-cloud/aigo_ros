@@ -1,6 +1,6 @@
 <launch>
 
-  <arg name="ticks_per_meter" value="10000" />
+  <arg name="ticks_per_meter" value="5363" />
   <arg name="wheel_separation" value="0.2" />
   <arg name="rate" value="2.0" />
   <arg name="urdf_file" default="$(find aigo_urdf)/urdf/aigo.urdf" />

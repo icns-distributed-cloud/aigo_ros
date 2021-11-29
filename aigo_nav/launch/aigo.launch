@@ -11,7 +11,7 @@
     <!-- launch imu, topic will be published to /imu and gps topic will be published to /gps -->
 
     <!-- <include file="$(find wit_node)/launch/wit.launch"/> -->
-    <include file="$(find ublox_gps)/launch/ublox_zed-f9p.launch"/>
+    
 
     <!--include file="$(find ntrip_ros)/launch/ntrip_ros.launch"/-->
     <!-- launch aigo_serial to communicate with STM32 board -->
